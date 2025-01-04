@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35004.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactPlusDotNet.Server", "ReactPlusDotNet.Server\ReactPlusDotNet.Server.csproj", "{B4C22089-DD62-4285-AB0C-0CD967FB8E59}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "reactplusdotnet.client", "reactplusdotnet.client\reactplusdotnet.client.esproj", "{C2525F01-87A3-48F4-8C88-7074A6D487AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4C22089-DD62-4285-AB0C-0CD967FB8E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4C22089-DD62-4285-AB0C-0CD967FB8E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4C22089-DD62-4285-AB0C-0CD967FB8E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4C22089-DD62-4285-AB0C-0CD967FB8E59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2525F01-87A3-48F4-8C88-7074A6D487AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2525F01-87A3-48F4-8C88-7074A6D487AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2525F01-87A3-48F4-8C88-7074A6D487AB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C2525F01-87A3-48F4-8C88-7074A6D487AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2525F01-87A3-48F4-8C88-7074A6D487AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2525F01-87A3-48F4-8C88-7074A6D487AB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16B32535-A64A-4923-816E-60AA534E6E8C}
+	EndGlobalSection
+EndGlobal
