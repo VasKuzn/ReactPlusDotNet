@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import RowContact from "./components/RowContact"
 
 
@@ -28,7 +29,7 @@ const TableContact = (props) => {
               }
           </tbody>
       </table>
-  );
+    );
 }
 
 export default TableContact;
