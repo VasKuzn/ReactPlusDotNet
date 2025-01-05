@@ -19,11 +19,13 @@ const TableContact = (props) => {
               {
                   props.contactlist.map(
                       contact =>
-                          (<RowContact
+                      (<RowContact
+                          key={contact.id}
                           id={contact.id}
                           name={contact.name}
                           phoneNumber={contact.phoneNumber}
                           email={contact.email}
+                          deleteContact={props.deleteContact}
                       />)
                   )
               }
