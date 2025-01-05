@@ -1,16 +1,26 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 //import { useEffect, useState } from 'react';
 import './App.css';
 import TableContact from "./layout/tableContact/TableContact"
 import FormContact from "./layout/FormContact/FormContact"
-import {useState} from "react"
+import { useState, useEffect } from "react"
+import axios from "axios";
+
+const baseApiUrl = import.meta.env.VITE_APP_API_URL;
+
 const App = () =>
 {
-    const [contacts, SetContacts] = useState([{ id: 1, name: "John", phoneNumber: 231321, email: "1@1.ru" },
-    { id: 2, name: "Clara", phoneNumber: 543543, email: "2@2.ru" },
-    { id: 3, name: "Vitya", phoneNumber: 786876, email: "3@3.ru" },
-    ]
-    ); 
+    
+    const [contacts, SetContacts] = useState([]); 
+
+
+    const url = `${baseApiUrl}/contacts`;
+    useEffect(() =>
+    {
+        axios.get(url).then(res => SetContacts(res.data));
+    }, []);
+
     const addContact = (contactName, contactPhone, contactEmail) => {
         const newID = contacts.length === 0 ? 1 : contacts.sort((x, y) => x.id - y.id)[contacts.length - 1].id + 1;
         const item =
@@ -20,11 +30,14 @@ const App = () =>
             phoneNumber: contactPhone,
             email: contactEmail
         };
+        axios.post(url,item)
         SetContacts([...contacts,item]);
     }
     const deleteContact = (id) =>
     {
+        const url = `${baseApiUrl}/contacts/${id}`;
         SetContacts(contacts.filter(item => item.id !== id));
+        axios.delete(url);
     }
     return(
         <div className="container mt-5">
