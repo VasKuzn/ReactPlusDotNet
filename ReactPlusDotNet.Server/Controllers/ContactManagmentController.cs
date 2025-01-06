@@ -2,20 +2,22 @@
 using ReactPlusDotNet.Server.ModelsDTO;
 using ReactPlusDotNet.Server.Models;
 using ReactPlusDotNet.Server.Storage;
+using ReactPlusDotNet.Server.Interfaces;
 
 namespace ReactPlusDotNet.Server.Controllers
 {
     public class ContactManagmentController : BaseController
     {
-        private readonly ContactStorage _contactStorage;
-        public ContactManagmentController(ContactStorage contactStorage)
+        private readonly IStorage _contactStorage;
+        public ContactManagmentController(IStorage contactStorage)
         {
             this._contactStorage = contactStorage;
         }
         [HttpPost("contacts")]
         public IActionResult Create([FromBody] Contact contact)
         {
-            if (_contactStorage.AddContact(contact))
+            Contact res = _contactStorage.AddContact(contact);
+            if (res != null)
             {
                 return Created();
             }
@@ -24,7 +26,7 @@ namespace ReactPlusDotNet.Server.Controllers
         [HttpGet("contacts")]
         public IActionResult GetContacts()
         {
-            return Ok(_contactStorage.Contacts);
+            return Ok(_contactStorage.GetAll());
         }
         [HttpDelete("contacts/{id}")]
         public IActionResult Delete(int id)

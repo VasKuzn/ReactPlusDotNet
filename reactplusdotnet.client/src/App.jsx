@@ -22,16 +22,13 @@ const App = () =>
     }, []);
 
     const addContact = (contactName, contactPhone, contactEmail) => {
-        const newID = contacts.length === 0 ? 1 : contacts.sort((x, y) => x.id - y.id)[contacts.length - 1].id + 1;
         const item =
         {
-            id: newID,
             name: contactName,
             phoneNumber: contactPhone,
             email: contactEmail
         };
-        axios.post(url,item)
-        SetContacts([...contacts,item]);
+        axios.post(url, item).then(response => SetContacts([...contacts, response.data]));
     }
     const deleteContact = (id) =>
     {

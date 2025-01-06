@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ReactPlusDotNet.Server.Interfaces;
 using ReactPlusDotNet.Server.Models;
 using ReactPlusDotNet.Server.ModelsDTO;
 
 namespace ReactPlusDotNet.Server.Storage
 {
-    public class ContactStorage
+    public class InMemoryStorage : IStorage
     {
         public List<Contact> Contacts { get; set; }
-        public ContactStorage()
+        public InMemoryStorage()
         {
             this.Contacts = new List<Contact>();
             for (int i = 0; i < 5; i++)
@@ -21,19 +22,25 @@ namespace ReactPlusDotNet.Server.Storage
                 });
             }
         }
-        public bool AddContact(Contact contact)
+        public Contact AddContact(Contact contact)
         {
             if (Contacts.Any(c => c.Id == contact.Id))
             {
-                return false;
+                return null;
             }
             else
             {
                 this.Contacts.Add(contact);
             }
-            return true;
+            return contact;
 
         }
+
+        public List<Contact> GetAll()
+        {
+            return Contacts;
+        }
+
         public bool RemoveContact(int id)
         {
             var contact = this.Contacts.FirstOrDefault(c => c.Id == id);

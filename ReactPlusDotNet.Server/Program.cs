@@ -1,16 +1,12 @@
+using Microsoft.Extensions.DependencyInjection;
+using ReactPlusDotNet.Server.Extensions;
+using ReactPlusDotNet.Server.Interfaces;
 using ReactPlusDotNet.Server.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<ContactStorage>();
-builder.Services.AddCors(
-    opt => opt.AddPolicy("CorsPolicy", policy => { policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("https://localhost:5173");}) // если на другой комп и в другой среде, то пишем dotnet run https://localhost:5173 а в withorigins(args[0])
-    );
+builder.Services.AddServiceCollection(builder.Configuration);
 var app = builder.Build();
-
+app.Services.AddCustomService(builder.Configuration);
 app.UseDefaultFiles();
 app.UseStaticFiles();
 if (app.Environment.IsDevelopment())
