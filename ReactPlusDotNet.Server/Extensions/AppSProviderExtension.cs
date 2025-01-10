@@ -10,17 +10,18 @@ namespace ReactPlusDotNet.Server.Extensions
         {
             using var scope = services.CreateScope();
 
-            var storage = scope.ServiceProvider.GetService<IStorage>();
+            //var storage = scope.ServiceProvider.GetService<IStorage>();
 
-            var dbStorage = storage as SqliteStorage;
+            //var dbStorage = storage as SqliteStorage;
 
-            if (dbStorage != null)
-            {
-                string connectionString = configuration.GetConnectionString("SqliteConnectionString");
+            //if (dbStorage != null)
+            //{
+            //    string connectionString = configuration.GetConnectionString("SqliteConnectionString");
 
-                new FakerInitializer(connectionString).Initialize();
-            }
-
+            //    new FakerInitializer(connectionString).Initialize();
+            //}
+            var initializer = scope.ServiceProvider.GetRequiredService<IInitializer>();
+            initializer.Initialize();
             return services;
         }
     }

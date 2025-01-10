@@ -11,9 +11,6 @@ namespace ReactPlusDotNet.Server.Interfaces
 
         bool UpdateContact(int id, [FromBody] ContactDTO contactDTO);
 
-        Contact FindContactById(int id);
-
         List<Contact> GetAll();
-
     }
 }

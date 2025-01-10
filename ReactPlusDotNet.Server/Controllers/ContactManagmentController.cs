@@ -8,8 +8,8 @@ namespace ReactPlusDotNet.Server.Controllers
 {
     public class ContactManagmentController : BaseController
     {
-        private readonly IStorage _contactStorage;
-        public ContactManagmentController(IStorage contactStorage)
+        private readonly IPaginationStorage _contactStorage;
+        public ContactManagmentController(IPaginationStorage contactStorage)
         {
             this._contactStorage = contactStorage;
         }
@@ -63,6 +63,20 @@ namespace ReactPlusDotNet.Server.Controllers
             }
 
             return Ok(contact);
+        }
+        [HttpGet("contact/page")]
+        public IActionResult GetContacts(int pageNumber =1, int pageSize = 5) 
+        {
+            var (contact, total) = _contactStorage.GetContacts(pageNumber, pageSize);
+
+            var response = new
+            {
+                Contacts = contact,
+                TotalCount = total,
+                CurrentPage = pageNumber,
+                PageSize = pageSize
+            };
+            return Ok(response);
         }
     }
 }
